@@ -1,0 +1,55 @@
+
+<h1>{{title}}</h1>
+
+
+<div class="row">
+    <div class="col-md-6 col-md-6-well">
+        <form [ngFormModel]="form" (ngSubmit)="save()">
+                <fieldset>
+                    <legend>
+                        User
+                    </legend>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input [(ngModel)]="user.name"  #name="ngForm" ngControl="name" type="text" ng-control="name" class="form-control">
+                    </div>
+                    <div *ngIf="name.touched && !name.valid" class="alert alert-danger">
+                            Please type a valid name.
+                    </div>
+                  <div class="form-group">
+                        <label for="email">Email</label>
+                        <input [(ngModel)]="user.email" #email="ngForm" ngControl="email" type="text" ng-control="email" class="form-control">
+                    </div>
+                    <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
+                            Please Valid email.
+                    </div>
+                  <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input [(ngModel)]="user.phone" #phone="ngForm" ngControl="phone" type="text" ng-control="phone" class="form-control">
+                    </div>
+                </fieldset>
+                <fieldset ngControlGroup="address">
+                     <legend>
+                        Address
+                    </legend>
+                    <div class="form-group">
+                        <label for="street">Street</label>
+                        <input [(ngModel)]="user.address.street" type="text" ng-control="street" class="form-control">
+                    </div>
+                  <div class="form-group">
+                        <label for="suite">Suite</label>
+                        <input [(ngModel)]="user.address.suite" type="text" ng-control="suite" class="form-control">
+                    </div>
+                  <div class="form-group">
+                        <label for="city">City</label>
+                        <input [(ngModel)]="user.address.city" type="text" ng-control="city" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="zipcode">ZipCode</label>
+                        <input [(ngModel)]="user.address.zipcode" type="text" ng-control="zipcode" class="form-control">
+                    </div>
+                </fieldset>
+                <button [disabled]="!form.valid" class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
+</div>
