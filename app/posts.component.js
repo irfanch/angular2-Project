@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './posts.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, posts_service_1;
     var PostsComponent;
     return {
         setters:[
@@ -19,17 +19,27 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (posts_service_1_1) {
+                posts_service_1 = posts_service_1_1;
             }],
         execute: function() {
             PostsComponent = (function () {
-                function PostsComponent() {
+                function PostsComponent(_service) {
+                    this._service = _service;
                 }
+                PostsComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this._service.getPosts()
+                        .subscribe(function (posts) { return _this.posts = posts; });
+                };
                 PostsComponent = __decorate([
                     core_1.Component({
-                        template: '<h1>Posts</h1>',
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        templateUrl: 'app/posts.component.html',
+                        providers: [posts_service_1.PostService],
+                        directives: [router_1.RouterLink]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [posts_service_1.PostService])
                 ], PostsComponent);
                 return PostsComponent;
             }());
