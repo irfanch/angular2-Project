@@ -1,10 +1,16 @@
 
 <h1>Posts</h1>
 
+<div class="row">
+    <div class="col-md-6">
+    <spinner [visible]="isLoading"></spinner>
 
-<ul class="list-group">
-    <li *ngFor="#post of posts" class="list-group-item">
-        {{post.title}}
+     <ul class="list-group">
+            <li *ngFor="#post of posts" class="list-group-item">
+                {{post.title}}
 
-    </li>
-</ul>
+            </li>
+        </ul>
+    </div>
+
+</div>
