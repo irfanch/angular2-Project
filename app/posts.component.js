@@ -27,6 +27,7 @@ System.register(['angular2/core', 'angular2/router', './posts.service', './spinn
                 spinn_component_1 = spinn_component_1_1;
             }],
         execute: function() {
+            //import {PanelComponent} from './panel.component';
             PostsComponent = (function () {
                 function PostsComponent(_service) {
                     this._service = _service;
@@ -37,9 +38,13 @@ System.register(['angular2/core', 'angular2/router', './posts.service', './spinn
                     this._service.getPosts()
                         .subscribe(function (posts) { return _this.posts = posts; }, null, function () { _this.isLoadin = false; });
                 };
+                PostsComponent.prototype.select = function (post) {
+                    this.currentPost = post;
+                };
                 PostsComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/posts.component.html',
+                        styles: ["\n         .posts li { cursor: default; }\n         .posts li:hover { background: #ecf0f1; } \n         .list-group-item.active, \n         .list-group-item.active:hover, \n         .list-group-item.active:focus { \n             background-color: #ecf0f1;\n             border-color: #ecf0f1; \n             color: #2c3e50;\n         }\n     "],
                         providers: [posts_service_1.PostService],
                         directives: [router_1.RouterLink, spinn_component_1.SpinComponent]
                     }), 
